@@ -26,6 +26,18 @@ class TaskyViewController: UITableViewController {
         cell.textLabel?.text = itemArray[indexPath.row]
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        print(itemArray[indexPath.row])
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        if tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark {
+            tableView.cellForRow(at: indexPath)?.accessoryType = .none
+        }
+        else{
+            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+        }
+    }
 
 
 }
