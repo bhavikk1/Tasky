@@ -8,7 +8,7 @@ import UIKit
 
 class TaskyViewController: UITableViewController {
     
-    let itemArray = ["Find Ball", "Buy Eggs", "Buy Peach"]
+    var itemArray = ["Find Ball", "Buy Eggs", "Buy Peach"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +38,29 @@ class TaskyViewController: UITableViewController {
             tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
         }
     }
-
+    
+    
+    @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
+        
+        var textField = UITextField()
+        
+        let alert = UIAlertController(title: "Add New Task Item", message: "", preferredStyle: .alert)
+        
+        let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
+            
+            self.itemArray.append(textField.text!)
+            
+            self.tableView.reloadData()
+        }
+        alert.addTextField { (alertTextField) in
+            alertTextField.placeholder = "Create new Item"
+            textField = alertTextField
+        }
+        alert.addAction(action)
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
 
 }
 
