@@ -17,7 +17,7 @@ class TaskyViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(dataFilePath)
+        
         loadItems()
     }
     
@@ -36,6 +36,11 @@ class TaskyViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        // Deleting a element
+        
+//        context.delete(itemArray[indexPath.row])
+//        itemArray.remove(at: indexPath.row)
         
         itemArray[indexPath.row].done = !itemArray[indexPath.row].done
         
@@ -83,19 +88,33 @@ class TaskyViewController: UITableViewController {
         self.tableView.reloadData()
     }
     
-    func loadItems(){
+    func loadItems(with request: NSFetchRequest<Item> = Item.fetchRequest()){
        
-        let request : NSFetchRequest<Item>  = Item.fetchRequest()
         do{
         itemArray = try context.fetch(request)
         }
         catch{
             print("Error fetcning context \(error)")
         }
-        
-        
     }
+
+}
+
+//MARK: - Search Bar Methods
+
+extension TaskyViewController: UISearchBarDelegate {
     
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        let request: NSFetchRequest<Item> = Item.fetchRequest()
+        
+        request.predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
+        
+        request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
+        
+        loadItems(with: request)
+        
+       }
     
 }
 
