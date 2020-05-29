@@ -48,12 +48,12 @@ class TaskyViewController: UITableViewController {
         
         // Deleting a element
         
-//        context.delete(itemArray[indexPath.row])
-//        itemArray.remove(at: indexPath.row)
+        //        context.delete(itemArray[indexPath.row])
+        //        itemArray.remove(at: indexPath.row)
         
-//        todoItems[indexPath.row].done = !todoItems[indexPath.row].done
-//
-//        saveItems()
+        //        todoItems[indexPath.row].done = !todoItems[indexPath.row].done
+        //
+        //        saveItems()
         
         
         if let item = todoItems?[indexPath.row]{
@@ -77,15 +77,15 @@ class TaskyViewController: UITableViewController {
         let alert = UIAlertController(title: "Add New Task Item", message: "", preferredStyle: .alert)
         
         let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
-
+            
             if let currentCategory = self.selectedCategory{
                 do{
                     try self.realm.write{
-                let newItem = Item()
-                newItem.title = textField.text!
+                        let newItem = Item()
+                        newItem.title = textField.text!
                         newItem.dateCreated = Date()
-                currentCategory.items.append(newItem)
-                }
+                        currentCategory.items.append(newItem)
+                    }
                 }
                 catch{
                     print("Error saving new items \(error)")
@@ -109,29 +109,29 @@ class TaskyViewController: UITableViewController {
         todoItems = selectedCategory?.items.sorted(byKeyPath: "title", ascending: true)
         tableView.reloadData()
     }
-
+    
 }
 
 //MARK: - Search Bar Methods
 
 extension TaskyViewController: UISearchBarDelegate {
-
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
         todoItems = todoItems?.filter("title CONTAINS[cd] %@", searchBar.text!).sorted(byKeyPath: "dateCreated", ascending: true)
         tableView.reloadData()
-
-       }
-
+        
+    }
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchBar.text?.count == 0 {
             loadItems()
             DispatchQueue.main.async {
                 searchBar.resignFirstResponder()
             }
-
+            
         }
     }
-
+    
 }
 

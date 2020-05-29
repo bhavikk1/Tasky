@@ -15,14 +15,14 @@ class CategoryViewController: UITableViewController {
     let realm = try! Realm()
     
     var categories: Results<Category>?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadCategories()
-
+        
     }
-
-   
+    
+    
     
     //MARK: TableView Datasource Methods
     
@@ -87,10 +87,10 @@ class CategoryViewController: UITableViewController {
         }
         
         present(alert, animated: true, completion: nil)
-           
-           
-           
-       }
+        
+        
+        
+    }
     
     //MARK: TableView Delegate Methods
     
