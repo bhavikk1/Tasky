@@ -5,21 +5,20 @@
 //  Created by Bhavik Kothari
 
 import UIKit
-import CoreData
+import RealmSwift
 
 class TaskyViewController: UITableViewController {
     
-    var itemArray = [Item]()
-    
+    var todoItems: Results<Item>?
+    let realm = try! Realm()
     var selectedCategory : Category? {
         didSet{
-//            loadItems()
+            loadItems()
         }
     }
     
     let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
     
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,15 +26,20 @@ class TaskyViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return itemArray.count
+        return todoItems?.count ?? 1
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoItemCell", for: indexPath)
-        cell.textLabel?.text = itemArray[indexPath.row].title
         
-        cell.accessoryType = itemArray[indexPath.row].done ? .checkmark : .none
+        if let item = todoItems?[indexPath.row] {
+            cell.textLabel?.text = item.title
+            
+            cell.accessoryType = item.done ? .checkmark : .none
+        } else{
+            cell.textLabel?.text = "No Item added"
+        }
         
         return cell
     }
@@ -47,10 +51,21 @@ class TaskyViewController: UITableViewController {
 //        context.delete(itemArray[indexPath.row])
 //        itemArray.remove(at: indexPath.row)
         
-        itemArray[indexPath.row].done = !itemArray[indexPath.row].done
+//        todoItems[indexPath.row].done = !todoItems[indexPath.row].done
+//
+//        saveItems()
         
-        saveItems()
         
+        if let item = todoItems?[indexPath.row]{
+            do{
+                try realm.write{
+                    item.done = !item.done
+                }
+            }catch{
+                print(error)
+            }
+        }
+        tableView.reloadData()
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
@@ -63,15 +78,20 @@ class TaskyViewController: UITableViewController {
         
         let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
 
+            if let currentCategory = self.selectedCategory{
+                do{
+                    try self.realm.write{
+                let newItem = Item()
+                newItem.title = textField.text!
+                currentCategory.items.append(newItem)
+                }
+                }
+                catch{
+                    print("Error saving new items \(error)")
+                }
+            }
+            self.tableView.reloadData()
             
-//            let newItem = Item(context: self.context)
-//            newItem.title = textField.text!
-//            newItem.done = false
-//            newItem.parentCategory = self.selectedCategory
-//
-//            self.itemArray.append(newItem)
-//
-//            self.saveItems()
             
         }
         alert.addTextField { (alertTextField) in
@@ -83,36 +103,11 @@ class TaskyViewController: UITableViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    func saveItems(){
+    func loadItems(){
         
-        
-        do{
-            try context.save()
-        }catch{
-            print("Error saving context \(error)")
-        }
-        self.tableView.reloadData()
+        todoItems = selectedCategory?.items.sorted(byKeyPath: "title", ascending: true)
+        tableView.reloadData()
     }
-    
-//    func loadItems(with request: NSFetchRequest<Item> = Item.fetchRequest(), predicate: NSPredicate? = nil){
-//
-//        let categoryPredicate = NSPredicate(format: "parentCategory.name MATCHES %@", selectedCategory!.name!)
-//
-//        if let additionalPredicate = predicate{
-//            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate, additionalPredicate])
-//        }
-//        else{
-//            request.predicate = categoryPredicate
-//        }
-//
-//        do{
-//        itemArray = try context.fetch(request)
-//        }
-//        catch{
-//            print("Error fetcning context \(error)")
-//        }
-//        tableView.reloadData()
-//    }
 
 }
 
