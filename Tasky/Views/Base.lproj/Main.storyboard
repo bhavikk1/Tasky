@@ -7,6 +7,45 @@
     </dependencies>
     <scenes>
         <!--Tasky-->
+        <scene sceneID="OWq-7y-bZ2">
+            <objects>
+                <tableViewController id="D54-mj-oUP" customClass="CategoryViewController" customModule="Tasky" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="sLx-zg-TdZ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CategoryCell" id="Gxs-ZH-PKC">
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Gxs-ZH-PKC" id="ZfB-z3-jNR">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="D54-mj-oUP" id="kHT-5t-ld8"/>
+                            <outlet property="delegate" destination="D54-mj-oUP" id="CaP-7P-C61"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Tasky" id="HX2-Ef-jxU">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="DJb-0H-cuL">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="addButtonPressed:" destination="D54-mj-oUP" id="YKv-cY-UQH"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="54a-xL-uTc" kind="show" identifier="goToItems" id="O0M-Du-bI1"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vh5-85-T31" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="719" y="17"/>
+        </scene>
+        <!--Items-->
         <scene sceneID="HON-AK-148">
             <objects>
                 <tableViewController id="54a-xL-uTc" customClass="TaskyViewController" customModule="Tasky" customModuleProvider="target" sceneMemberID="viewController">
@@ -37,7 +76,7 @@
                             <outlet property="delegate" destination="54a-xL-uTc" id="ipY-BB-6Ec"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Tasky" id="CxH-Rr-pDz">
+                    <navigationItem key="navigationItem" title="Items" id="CxH-Rr-pDz">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="8Qa-NN-d3H">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
@@ -48,7 +87,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7ho-7J-Bg4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1015.9420289855074" y="38.839285714285715"/>
+            <point key="canvasLocation" x="1565" y="17"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="iId-gg-1SE">
@@ -58,6 +97,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="zXJ-Gh-bOK">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -68,12 +108,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="54a-xL-uTc" kind="relationship" relationship="rootViewController" id="bhz-WG-6RL"/>
+                        <segue destination="D54-mj-oUP" kind="relationship" relationship="rootViewController" id="cAr-hW-qlN"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aRx-p2-IxT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="105.79710144927537" y="38.839285714285715"/>
+            <point key="canvasLocation" x="-128" y="17"/>
         </scene>
     </scenes>
 </document>
