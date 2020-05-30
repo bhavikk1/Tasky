@@ -1,11 +1,13 @@
-platform :ios, '13.0'
+platform :ios, '9.0'
 
 target 'Tasky' do
 
+  use_frameworks!
+
   # Pods for Tasky
 
-use_frameworks!
-pod 'RealmSwift'
 
+pod 'RealmSwift'
+pod 'SwipeCellKit'
 
 end
