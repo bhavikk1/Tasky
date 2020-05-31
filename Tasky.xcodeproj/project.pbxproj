@@ -15,6 +15,7 @@
 		EB2BE506239524DC00FB933B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB2BE504239524DC00FB933B /* LaunchScreen.storyboard */; };
 		F6A81F68247C3CDC00C09386 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F6A81F67247C3CDC00C09386 /* Default-568h@2x.png */; };
 		F6A81F98248074ED00C09386 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A81F97248074ED00C09386 /* CategoryViewController.swift */; };
+		F6D934742481F0C900025BCF /* SwipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D934732481F0C900025BCF /* SwipeTableViewController.swift */; };
 		F6E2016B24819BA000C4A880 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E2016A24819BA000C4A880 /* Item.swift */; };
 		F6E2016D24819BAC00C4A880 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E2016C24819BAC00C4A880 /* Category.swift */; };
 /* End PBXBuildFile section */
@@ -32,6 +33,7 @@
 		EB2BE507239524DC00FB933B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F6A81F67247C3CDC00C09386 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		F6A81F97248074ED00C09386 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
+		F6D934732481F0C900025BCF /* SwipeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTableViewController.swift; sourceTree = "<group>"; };
 		F6E2016A24819BA000C4A880 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		F6E2016C24819BAC00C4A880 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -111,6 +113,7 @@
 			children = (
 				EB2BE4FD239524DB00FB933B /* TaskyViewController.swift */,
 				F6A81F97248074ED00C09386 /* CategoryViewController.swift */,
+				F6D934732481F0C900025BCF /* SwipeTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -252,6 +255,7 @@
 				F6A81F98248074ED00C09386 /* CategoryViewController.swift in Sources */,
 				EB2BE4FE239524DB00FB933B /* TaskyViewController.swift in Sources */,
 				EB2BE4FA239524DB00FB933B /* AppDelegate.swift in Sources */,
+				F6D934742481F0C900025BCF /* SwipeTableViewController.swift in Sources */,
 				F6E2016D24819BAC00C4A880 /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
